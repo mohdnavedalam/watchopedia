@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import Header from './Components/Layout/Header';
 import Footer from './Components/Layout/Footer';
 import Counter from './Components/Counter';
+import MoviePage from './Components/MovieComponents/MoviePage';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -10,6 +11,7 @@ root.render(
     <Header />
     <div className='p-2 m-2 row text-center'>
       <Counter />
+      <MoviePage />
     </div>
     <Footer />
   </div>
