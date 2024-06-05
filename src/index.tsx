@@ -7,10 +7,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <div>
     <Header />
-    <div className="row text-white">
-      <div className="col-6">
-      </div>
-    </div>
+     
     <Footer />
   </div>
 );
