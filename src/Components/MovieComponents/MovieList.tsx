@@ -1,6 +1,12 @@
-const MovieList = () => {
+const MovieList = (props: any) => {
     return (
-        <div>Movie List</div>
+        <div>
+            {props.movieList.map((movie: string, index: number) => {
+                return (
+                    <div key={index}>{movie}</div>
+                );
+            })}
+        </div>
     );
 };
 

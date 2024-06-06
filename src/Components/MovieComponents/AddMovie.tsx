@@ -1,6 +1,15 @@
-const AddMovie = () => {
+import { useState } from "react";
+
+const AddMovie = (props: any) => {
+    const [movieName, setMovieName] = useState("");
+    function submitMovieForm(e: any, props: any) {
+        e.preventDefault();
+        props.handleAddMovie(movieName);
+        setMovieName("");
+    }
+
     return (
-        <form>
+        <form onSubmit={(e: any) => submitMovieForm(e, props)}>
             <div className="row">
                 <div className="col-12 text-center py-1 h4 text-success">Add Movie</div>
                 <div className="col-8 offset-1">
@@ -8,6 +17,8 @@ const AddMovie = () => {
                         type="text"
                         className="form-control"
                         placeholder="Movie Name ..."
+                        value={movieName}
+                        onChange={(e: any) => setMovieName(e.target.value)}
                     >
                     </input>
                 </div>
