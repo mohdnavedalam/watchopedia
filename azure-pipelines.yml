@@ -12,15 +12,31 @@ pool: local-agent
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '20.x'
   displayName: 'Install Node.js'
+
+ # NOTE: Do not set environment variables like YARN_xxx or else you may encounter errors
+ # ex: Usage Error: Unrecognized or legacy configuration settings found: <someName> - run "yarn config -v" to see the list of settings supported in Yarn
+- script: |
+    IF EXIST ".yarn/cache/" (
+      echo ".yarn/cache checked in for 'Zero Installs', pushing cache and not running install.."
+    ) ELSE IF NOT EXIST ".yarn/cache/" (
+      echo ".yarn/cache doesn't exist, running yarn set version and install.."
+      echo "Setting yarn version to latest (3.x).."
+      yarn set version stable
+      echo "Checking yarn version.."
+      yarn -v
+      echo "Running yarn install.."
+      yarn install
+    )
+  displayName: 'Check for .yarn cache'
 
 # - script: |
 #     npm install
 #     npm run build
 #   displayName: 'npm install and build'
 
-- script: |
-    yarn install
-    yarn run build
-  displayName: 'yarn install and build'
+# - script: |
+#     yarn install
+#     yarn run build
+#   displayName: 'yarn install and build'
